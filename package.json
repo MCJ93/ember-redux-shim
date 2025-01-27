@@ -1,70 +1,26 @@
 {
   "name": "ember-redux-shim",
   "version": "4.0.1",
-  "description": "Redux for Ember apps",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
-  "scripts": {
-    "build": "ember build",
-    "lint": "lint-all-the-things",
-    "lint:js": "eslint ./*.js addon addon-test-support app blueprints config lib server test-support tests",
-    "start": "ember serve",
-    "test": "ember test",
-    "test:all": "ember try:each",
-    "test-addon": "EMBER_TRY_SCENARIO=${EMBER_TRY_SCENARIO:=default} && ember try:one $EMBER_TRY_SCENARIO --- COVERAGE=true ember test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ember-redux/ember-redux-shim.git"
-  },
-  "homepage": "https://github.com/ember-redux/ember-redux-shim",
-  "engines": {
-    "node": "^4.5 || 6.* || >= 7.*"
-  },
-  "bugs": {
-    "url": "https://github.com/ember-redux/ember-redux-shim/issues"
-  },
-  "author": "Matthew Dahl (https://github.com/sandersky)",
+  "private": true,
+  "repository": "",
   "license": "MIT",
-  "devDependencies": {
-    "broccoli-asset-rev": "^2.5.0",
-    "ember-cli": "~3.1.4",
-    "ember-cli-dependency-checker": "^2.0.0",
-    "ember-cli-eslint": "^4.2.1",
-    "ember-cli-htmlbars": "^2.0.1",
-    "ember-cli-htmlbars-inline-precompile": "^1.0.0",
-    "ember-cli-inject-live-reload": "^1.6.1",
-    "ember-cli-qunit": "^4.1.1",
-    "ember-cli-shims": "^1.2.0",
-    "ember-cli-test-loader": "^2.0.0",
-    "ember-cli-uglify": "^2.0.0",
-    "ember-disable-prototype-extensions": "^1.1.2",
-    "ember-export-application-global": "^2.0.0",
-    "ember-load-initializers": "^1.0.0",
-    "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-resolver": "^4.0.0",
-    "ember-source": "~3.2.0",
-    "ember-source-channel-url": "^1.0.1",
-    "ember-symbol-observable": "1.0.2",
-    "ember-try": "^0.2.23",
-    "eslint-plugin-ember": "^5.0.0",
-    "eslint-plugin-node": "^6.0.1",
-    "loader.js": "^4.2.3",
-    "redux": "4.0.0"
-  },
-  "keywords": [
-    "ember-addon",
-    "redux"
+  "author": "",
+  "workspaces": [
+    "packages/addon",
+    "packages/test-app"
   ],
-  "dependencies": {
-    "babel-plugin-transform-object-rest-spread": "^6.19.0",
-    "broccoli-merge-trees": "^1.1.4",
-    "broccoli-string-replace": "^0.1.2",
-    "ember-cli-babel": "^6.8.2"
+  "scripts": {
+    "build": "yarn workspace ember-redux-shim run build",
+    "lint": "yarn workspaces run lint",
+    "lint:fix": "yarn workspaces run lint:fix",
+    "prepare": "yarn build",
+    "start": "concurrently 'npm:start:*' --restart-after 5000 --prefix-colors cyan,white,yellow",
+    "start:addon": "yarn workspace ember-redux-shim run start",
+    "start:test-app": "yarn workspace test-app run start",
+    "test": "yarn workspaces run test"
   },
-  "ember-addon": {
-    "configPath": "tests/dummy/config"
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "prettier": "^2.8.3"
   }
 }
